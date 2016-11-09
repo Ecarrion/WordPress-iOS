@@ -2,6 +2,8 @@ import UIKit
 import NotificationCenter
 import WordPressComStatsiOS
 import WordPressShared
+import Fabric
+import Crashlytics
 
 class TodayViewController: UIViewController {
     @IBOutlet var unconfiguredView: UIStackView!
@@ -23,6 +25,11 @@ class TodayViewController: UIViewController {
     var viewCount: String = ""
     var isConfigured = false
     var tracks = Tracks(appGroupName: WPAppGroupName)
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        Fabric.with([Crashlytics.self])
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
