@@ -25,7 +25,7 @@ class TodayViewController: UIViewController {
     var viewCount: String = ""
     var isConfigured = false
     var tracks = Tracks(appGroupName: WPAppGroupName)
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         Fabric.with([Crashlytics.self])
