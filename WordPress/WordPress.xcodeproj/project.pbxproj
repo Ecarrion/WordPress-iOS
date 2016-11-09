@@ -5004,6 +5004,7 @@
 				93E5283619A7741A003A1A9C /* Sources */,
 				93E5283719A7741A003A1A9C /* Frameworks */,
 				93E5283819A7741A003A1A9C /* Resources */,
+				BE3185951DD3E7E100651D84 /* Run Fabric/Crashlytics */,
 				7575FCC4B042EF86E4B1A17C /* [CP] Copy Pods Resources */,
 				932A1BA81CB2EDB500DAAF48 /* Delete Frameworks folder (temporary fix for CocoaPods) */,
 			);
@@ -5552,6 +5553,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# sh ../run-oclint.sh <optional: filename to lint>\nsh ../Scripts/run-oclint.sh";
 			showEnvVarsInLog = 0;
+		};
+		BE3185951DD3E7E100651D84 /* Run Fabric/Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Fabric/Crashlytics";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "[ -f ~/.wpcom_app_credentials ] && source ~/.wpcom_app_credentials\n \n if [[ \"Debug\" == \"${CONFIGURATION}\" ]]; then\n echo \"Skipping Fabric\";\n exit 0;\n fi\n \n if [ \"x$FABRIC_SCRIPT_KEY\" != \"x\" ]; then\n \"${PODS_ROOT}/Fabric/run\" $FABRIC_SCRIPT_KEY\n else\n echo \"warning: Fabric API Key not found\"\n fi";
 		};
 		CEFAAB6199A549599E878796 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
