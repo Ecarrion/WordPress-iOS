@@ -14,6 +14,7 @@ abstract_target 'WordPress_Base' do
   ## This pod is only being included to support the share extension ATM - https://github.com/wordpress-mobile/WordPress-iOS/issues/5081
   pod 'WordPressComKit',   '0.0.5'
   pod 'WordPressCom-Stats-iOS', '0.8.0'
+  pod 'Crashlytics'
 
   target 'WordPress' do
     # ---------------------
@@ -32,7 +33,6 @@ abstract_target 'WordPress_Base' do
     pod 'Reachability',	'3.2'
     pod 'SVProgressHUD', '~>1.1.3'
     pod 'UIDeviceIdentifier', '~> 0.1'
-    pod 'Crashlytics'
     pod 'BuddyBuildSDK', '~> 1.0.11', :configurations => ['Release-Alpha']
     pod 'FLAnimatedImage', '~> 1.0'
     # ----------------------------
