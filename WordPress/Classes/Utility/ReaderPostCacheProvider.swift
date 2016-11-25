@@ -3,9 +3,12 @@ import Foundation
 @objc class ReaderPostCacheProvider: NSObject {
 
     private enum ReaderPostType {
+
         case normal
         case cross
         case attribution
+
+        static let allTypes = [normal, cross, attribution]
     }
 
     let context: NSManagedObjectContext
@@ -15,17 +18,13 @@ import Foundation
 
     func getPostByID(postID: Int, siteID: Int) -> ReaderPost? {
 
-        var post = getPostByID(postID, siteID: siteID, type: .normal)
-
-        if post == nil {
-            post = getPostByID(postID, siteID: siteID, type: .attribution)
+        for type in ReaderPostType.allTypes {
+            if let post = getPostByID(postID, siteID: siteID, type: type) {
+                return post
+            }
         }
 
-        if post == nil {
-            post = getPostByID(postID, siteID: siteID, type: .cross)
-        }
-
-        return post
+        return nil
     }
 
     private func getPostByID(postID: Int, siteID: Int, type: ReaderPostType) -> ReaderPost? {

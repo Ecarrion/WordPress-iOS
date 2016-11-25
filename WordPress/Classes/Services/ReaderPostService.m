@@ -165,6 +165,16 @@ static NSString * const SourceAttributionStandardTaxonomy = @"standard-pick";
 
     } failure:^(NSError *error) {
         
+        if (success) {
+            
+            ReaderPostCacheProvider *provider = [[ReaderPostCacheProvider alloc] initWithContext:self.managedObjectContext];
+            ReaderPost *cachedPost = [provider getPostByID:postID siteID:siteID];
+            if (cachedPost){
+                success(cachedPost);
+                return;
+            }
+        }
+        
         if (failure) {
             failure(error);
         }
