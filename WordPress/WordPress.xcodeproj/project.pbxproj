@@ -133,6 +133,8 @@
 		26A1B5A01DDB6FC1007BDAC0 /* ReaderSiteServiceRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1B59F1DDB6FC1007BDAC0 /* ReaderSiteServiceRemoteTests.swift */; };
 		26AE46241DE891B400043CC9 /* ReaderPostCacheProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE46231DE891B400043CC9 /* ReaderPostCacheProvider.swift */; };
 		26AE46261DE89FBF00043CC9 /* ReaderPostCacheProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE46251DE89FBF00043CC9 /* ReaderPostCacheProviderTests.swift */; };
+		26D9FA311DEF504A009CFAAE /* NoConnectionNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9FA301DEF504A009CFAAE /* NoConnectionNotificationView.swift */; };
+		26D9FA331DEF5084009CFAAE /* NoConnectionNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D9FA321DEF5084009CFAAE /* NoConnectionNotificationView.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		2906F812110CDA8900169D56 /* EditCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2906F810110CDA8900169D56 /* EditCommentViewController.m */; };
 		296526FE105810E100597FA3 /* NSString+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 296526FD105810E100597FA3 /* NSString+Helpers.m */; };
@@ -1165,6 +1167,8 @@
 		26A1B59F1DDB6FC1007BDAC0 /* ReaderSiteServiceRemoteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderSiteServiceRemoteTests.swift; sourceTree = "<group>"; };
 		26AE46231DE891B400043CC9 /* ReaderPostCacheProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderPostCacheProvider.swift; sourceTree = "<group>"; };
 		26AE46251DE89FBF00043CC9 /* ReaderPostCacheProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderPostCacheProviderTests.swift; sourceTree = "<group>"; };
+		26D9FA301DEF504A009CFAAE /* NoConnectionNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoConnectionNotificationView.swift; sourceTree = "<group>"; };
+		26D9FA321DEF5084009CFAAE /* NoConnectionNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoConnectionNotificationView.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* WordPress_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordPress_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		2906F80F110CDA8900169D56 /* EditCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCommentViewController.h; sourceTree = "<group>"; };
@@ -2492,6 +2496,8 @@
 				591A428A1A6DC1B0003807A6 /* WPBackgroundDimmerView.h */,
 				591A428B1A6DC1B0003807A6 /* WPBackgroundDimmerView.m */,
 				1702BBDB1CEDEA6B00766A33 /* BadgeLabel.swift */,
+				26D9FA301DEF504A009CFAAE /* NoConnectionNotificationView.swift */,
+				26D9FA321DEF5084009CFAAE /* NoConnectionNotificationView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5351,6 +5357,7 @@
 				5D4C8A001AB88F58007464B3 /* PostCardImageCell.xib in Resources */,
 				93C3C2571CAB031E0092F837 /* Info-Internal.plist in Resources */,
 				B50421E71B680839008EEA82 /* NoteUndoOverlayView.xib in Resources */,
+				26D9FA331DEF5084009CFAAE /* NoConnectionNotificationView.xib in Resources */,
 				FFC6ADD51B56F295002F3C84 /* AboutViewController.xib in Resources */,
 				E1D91456134A853D0089019C /* Localizable.strings in Resources */,
 				B5EEB19F1CA96D19004B6540 /* ImageCropViewController.xib in Resources */,
@@ -6339,6 +6346,7 @@
 				FF3DD6BE19F2B6B3003A52CB /* RemoteMedia.m in Sources */,
 				B574CE151B5E8EA800A84FFD /* NSMutableAttributedString+Helpers.swift in Sources */,
 				B5416CF51C171D7100006DD8 /* PushNotificationsManager.swift in Sources */,
+				26D9FA311DEF504A009CFAAE /* NoConnectionNotificationView.swift in Sources */,
 				08216FCD1CDBF96000304BA7 /* MenuItemPagesViewController.m in Sources */,
 				74D5FFD619ACDF6700389E8F /* WPLegacyEditPostViewController.m in Sources */,
 				FFB8DCAB1CE3271F00D4D1B7 /* WordPressComRestApi.swift in Sources */,
