@@ -1,6 +1,7 @@
 import Foundation
 import WordPressShared
 import WordPressComAnalytics
+import Reachability
 
 
 public class ReaderDetailViewController: UIViewController, UIViewControllerRestoration
@@ -68,6 +69,8 @@ public class ReaderDetailViewController: UIViewController, UIViewControllerResto
     private var footerViewHeightConstraintConstant = CGFloat(0.0)
 
     private let sharingController = PostSharingController()
+    private let internetReachability = Reachability.reachabilityForInternetConnection()
+    private var noConnectionView: NoConnectionNotificationView? = nil
 
     public var post: ReaderPost? {
         didSet {
@@ -165,6 +168,7 @@ public class ReaderDetailViewController: UIViewController, UIViewControllerResto
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        monitorInternetConnection()
         setupContentHeaderAndFooter()
         textView.alpha = 0
         footerView.hidden = true
@@ -763,6 +767,7 @@ public class ReaderDetailViewController: UIViewController, UIViewControllerResto
             return
         }
 
+        animateNoConnectionViewIn(!hidden, completion: nil)
         if (hidden) {
             // Hides the navbar and footer view
             navigationController?.setNavigationBarHidden(true, animated: true)
@@ -1059,5 +1064,80 @@ extension ReaderDetailViewController : UIScrollViewDelegate
             setBarsHidden(false)
         }
     }
+}
 
+//MARK: Reachability
+extension ReaderDetailViewController {
+
+    private func monitorInternetConnection() {
+
+        let internetHasChangedClosure: NetworkReachable = { [weak self] reachability in
+            dispatch_async(dispatch_get_main_queue(), {
+                if (reachability.isReachable()) {
+                    self?.removeNoConnectionStatusView()
+                } else {
+                    self?.showNoConnectionStatusView()
+                }
+            })
+        }
+
+        internetReachability.reachableBlock = internetHasChangedClosure
+        internetReachability.unreachableBlock = internetHasChangedClosure
+        internetReachability.startNotifier()
+        internetHasChangedClosure(internetReachability)
+    }
+}
+
+//MARK: NoConnectionNotificationView
+extension ReaderDetailViewController {
+
+    private func showNoConnectionStatusView() {
+
+        createNoConnectionView()
+        guard let notificationView = noConnectionView else {
+            return
+        }
+
+        attachViewToTop(notificationView)
+        animateNoConnectionViewIn(true, completion: nil)
+    }
+
+    private func removeNoConnectionStatusView() {
+
+        animateNoConnectionViewIn(false, completion: { _ in
+            self.noConnectionView?.removeFromSuperview()
+            self.noConnectionView = nil
+        })
+    }
+
+    private func createNoConnectionView() {
+
+        guard noConnectionView == nil else {
+            return
+        }
+
+        noConnectionView = NoConnectionNotificationView.view()
+        if let view = noConnectionView {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.alpha = 0.0
+        }
+    }
+
+    private func attachViewToTop(notificationView: NoConnectionNotificationView) {
+
+        view.addSubview(notificationView)
+        let viewRefs = ["noConnectionView": notificationView]
+        let constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[noConnectionView]|",
+                                                                         options:NSLayoutFormatOptions(rawValue: 0),
+                                                                         metrics: nil,
+                                                                         views: viewRefs)
+        view.addConstraints(constraints)
+    }
+
+    private func animateNoConnectionViewIn(fadeIn: Bool, completion: ((Bool) -> Void)? ) {
+        let newAlpha: CGFloat = fadeIn ? 1.0 : 0.0
+        UIView.animateWithDuration(0.3, animations: {
+            self.noConnectionView?.alpha = newAlpha
+            }, completion: completion)
+    }
 }
