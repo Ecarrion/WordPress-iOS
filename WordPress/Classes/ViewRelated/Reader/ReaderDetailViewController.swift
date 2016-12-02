@@ -1151,9 +1151,20 @@ extension ReaderDetailViewController {
     }
 
     private func animateNoConnectionViewIn(fadeIn: Bool, completion: ((Bool) -> Void)? ) {
+
+        guard let connectionView = noConnectionView else {
+            return
+        }
+
         let newAlpha: CGFloat = fadeIn ? 1.0 : 0.0
+        let insetMargin: CGFloat = 10.0
+        let top: CGFloat = fadeIn ? connectionView.frame.height + insetMargin : 0.0
+
         UIView.animateWithDuration(0.3, animations: {
-            self.noConnectionView?.alpha = newAlpha
-            }, completion: completion)
+
+            self.textView.contentInset.top = top
+            self.textView.contentOffset.y -= top
+            connectionView.alpha = newAlpha
+        }, completion: completion)
     }
 }
