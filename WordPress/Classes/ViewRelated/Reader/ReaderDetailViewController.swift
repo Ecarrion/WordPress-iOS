@@ -1066,7 +1066,7 @@ extension ReaderDetailViewController : UIScrollViewDelegate
     }
 }
 
-//MARK: Reachability
+//MARK: No Conection
 extension ReaderDetailViewController {
 
     private func monitorInternetConnection() {
@@ -1075,6 +1075,7 @@ extension ReaderDetailViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 if (reachability.isReachable()) {
                     self?.removeNoConnectionStatusView()
+                    self?.updatePostIfNeeded()
                 } else {
                     self?.showNoConnectionStatusView()
                 }
@@ -1085,6 +1086,18 @@ extension ReaderDetailViewController {
         internetReachability.unreachableBlock = internetHasChangedClosure
         internetReachability.startNotifier()
         internetHasChangedClosure(internetReachability)
+    }
+
+    private func updatePostIfNeeded() {
+
+        guard
+            let postID = post?.postID,
+            let siteID = post?.siteID else {
+                return
+        }
+
+        textView.alpha = 0.0
+        setupWithPostID(postID, siteID: siteID)
     }
 }
 
