@@ -170,12 +170,7 @@ public class ReaderDetailViewController: UIViewController, UIViewControllerResto
 
         monitorInternetConnection()
         setupContentHeaderAndFooter()
-        textView.alpha = 0
-        footerView.hidden = true
-
-        // Hide the featured image and its padding until we know there is one to load.
-        featuredImageView.hidden = true
-        featuredImageBottomPaddingView.hidden = true
+        setInitialViewState()
 
         // Styles
         applyStyles()
@@ -354,6 +349,14 @@ public class ReaderDetailViewController: UIViewController, UIViewControllerResto
         WPStyleGuide.applyReaderCardActionButtonStyle(likeButton)
     }
 
+    private func setInitialViewState() {
+        textView.alpha = 0
+        footerView.hidden = true
+
+        // Hide the featured image and its padding until we know there is one to load.
+        featuredImageView.hidden = true
+        featuredImageBottomPaddingView.hidden = true
+    }
 
     private func configureView() {
         textView.alpha = 1
@@ -1091,12 +1094,12 @@ extension ReaderDetailViewController {
     private func updatePostIfNeeded() {
 
         guard
-            let postID = post?.postID,
-            let siteID = post?.siteID else {
+            let postID = post?.sourceAttribution?.postID,
+            let siteID = post?.sourceAttribution?.blogID else {
                 return
         }
 
-        textView.alpha = 0.0
+        setInitialViewState()
         setupWithPostID(postID, siteID: siteID)
     }
 }
